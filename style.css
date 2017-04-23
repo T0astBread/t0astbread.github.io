@@ -1,0 +1,182 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 23, 2017, 1:26:34 AM
+    Author     : T0astBread
+*/
+
+*
+{
+    padding: 0;
+    margin: 0;
+    transition: all .5s;
+    box-sizing: content-box;
+}
+
+html, body
+{
+    height: 100%;
+}
+
+body
+{
+    background-color: #666666;
+    font-family: Calibri, sans-serif;
+    overflow: hidden;
+}
+
+body > section
+{
+    margin: auto;
+    /*margin-top: 10%;*/
+    /*margin-bottom: 60%;*/
+    height: 50%;
+    width: 40%;
+    background-color: white;
+    text-align: center;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .4);
+    display: flex;
+    flex-flow: column;
+    opacity: 0;
+
+    animation: intro-section 1s .5s forwards ease, intro-section-opacity .7s .5s cubic-bezier(0.52,-0.03, 0.14, 0.99) forwards;
+}
+
+@keyframes intro-section
+{
+    from
+    {
+        height: 0;
+    }
+    to
+    {
+        height: invalid;
+    }
+}
+
+@keyframes intro-section-opacity
+{
+    from
+    {
+        opacity: 0;
+    }
+    to
+    {
+        opacity: 1;
+    }
+}
+
+body::before
+{
+    content: " ";
+    display: block;
+    height: 20%;
+}
+
+body > section > *
+{
+    width: 100%;
+    display: block;
+}
+
+body > section > *
+{
+    padding-top: .5em;
+    padding-bottom: .5em;
+    border-top: 1px solid #999999;
+}
+
+body > section > *:first-child
+{
+    padding-top: 0;
+    padding-bottom: 0;
+    border-top: none;
+}
+
+h1, h1::before
+{
+    display: inline;
+    vertical-align: middle;
+    font-size: 56pt;
+    font-family: "PT Serif", serif;
+    color: white;
+}
+
+h1::before
+{
+    content: " ";
+    height: 100%;
+    display: inline-block;
+}
+
+#banner
+{
+    height: 6em;
+    background-color: #333333;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+#banner img, #banner object
+{
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+
+h2
+{
+    font-size: 24pt;
+}
+
+ul
+{
+    list-style: none;
+    padding: 0!important;
+    /*height: 15em;*/
+    /*height: auto;*/
+    overflow-y: auto;
+    background-color: #efefef;
+    display: flex;
+    height: 100%;
+    flex-flow: column;
+    flex: 1 1 auto;
+}
+
+ul li
+{
+    background-color: #cccccc;
+    color: #333333;
+    margin-bottom: .3em;
+    padding-top: .4em;
+    padding-bottom: .4em;
+    transition: background-color 1s;
+    /*transition: color .2s ease-out;*/
+}
+
+ul li:last-child
+{
+    margin-bottom: 0;
+}
+
+ul li:hover
+{
+    background-color: #333333;
+    color: #cccccc;
+}
+
+ul li a
+{
+    font-size: 22pt;
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
