@@ -128,6 +128,9 @@ h1::before
     max-width: 100%;
     max-height: 100%;
     display: block;
+    padding-left: 1em;
+    padding-right: 1em;
+    box-sizing: border-box;
 }
 
 h2
@@ -179,4 +182,46 @@ ul li a
     display: block;
     width: 100%;
     height: 100%;
+}
+
+@media screen and (max-width: 980px)
+{
+    body > section
+    {
+        width: 100%;
+        height: 100%;
+    }
+    
+    body::before
+    {
+        height: 0;
+        display: none;
+    }
+    
+    #banner
+    {
+        height: 10em;
+        padding-top: 2em;
+        padding-bottom: 2em;
+    }
+    
+    h2
+    {
+        font-size: 64pt;
+    }
+    
+    ul li
+    {
+        padding: 2em;
+    }
+    
+    ul li a
+    {
+        font-size: 48pt;
+    }
+    
+    #social-media-link
+    {
+        font-size: 32pt;
+    }
 }
