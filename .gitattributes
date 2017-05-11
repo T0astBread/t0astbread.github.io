@@ -1,0 +1,2 @@
+#Linguist excluded directories
+*.js linguist-vendored #The scripts are written in TypeScript and then compiled to JavaScript
