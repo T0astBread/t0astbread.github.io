@@ -208,6 +208,11 @@ ul li a {
     box-sizing: border-box;
 }
 
+#social-media-link {
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
 .secret-outer {
     display: block;
     position: absolute;
