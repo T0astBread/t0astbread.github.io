@@ -44,7 +44,7 @@ $(document).ready(() =>
         snapBackIntoPlace();
     };
 
-    $("#social-media-link").on("touchmove", evt =>
+    $(".social-media-links").on("touchmove", evt =>
     {
         updatePosition(calcOffsetFromBottom((evt.originalEvent as TouchEvent).touches[0].pageY));
         evt.preventDefault();

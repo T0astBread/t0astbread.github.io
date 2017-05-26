@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'github-io-icons';
-  src: url('../font/github-io-icons.eot?18446084');
-  src: url('../font/github-io-icons.eot?18446084#iefix') format('embedded-opentype'),
-       url('../font/github-io-icons.woff2?18446084') format('woff2'),
-       url('../font/github-io-icons.woff?18446084') format('woff'),
-       url('../font/github-io-icons.ttf?18446084') format('truetype'),
-       url('../font/github-io-icons.svg?18446084#github-io-icons') format('svg');
+  src: url('../font/github-io-icons.eot?67677811');
+  src: url('../font/github-io-icons.eot?67677811#iefix') format('embedded-opentype'),
+       url('../font/github-io-icons.woff2?67677811') format('woff2'),
+       url('../font/github-io-icons.woff?67677811') format('woff'),
+       url('../font/github-io-icons.ttf?67677811') format('truetype'),
+       url('../font/github-io-icons.svg?67677811#github-io-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'github-io-icons';
-    src: url('../font/github-io-icons.svg?18446084#github-io-icons') format('svg');
+    src: url('../font/github-io-icons.svg?67677811#github-io-icons') format('svg');
   }
 }
 */
@@ -60,7 +60,9 @@
 .icon-phone:before { content: '\e802'; } /* '' */
 .icon-phone-bold:before { content: '\e803'; } /* '' */
 .icon-back-to-github-small:before { content: '\e804'; } /* '' */
+.icon-wakatime:before { content: '\e80a'; } /* '' */
 .icon-twitter:before { content: '\f099'; } /* '' */
+.icon-github-circled:before { content: '\f09b'; } /* '' */
 .icon-mobile:before { content: '\f10b'; } /* '' */
 .icon-twitter-squared:before { content: '\f304'; } /* '' */
 .icon-twitter-circled:before { content: '\f30a'; } /* '' */

@@ -208,9 +208,26 @@ ul li a {
     box-sizing: border-box;
 }
 
-#social-media-link {
+.social-media-links {
     user-select: none;
     -webkit-user-drag: none;
+}
+
+.social-media-link {
+    padding-right: .4em;
+}
+
+.social-media-links .social-media-link:not(:last-of-type) {
+    border-right: 1px solid black;
+}
+
+.social-media-link.icon-twitter:hover {
+    color: #1da1f2;
+}
+
+.social-media-link.icon-wakatime:hover {
+    /*color: #449d44;*/
+    color: black;
 }
 
 .secret-outer {
@@ -242,6 +259,11 @@ ul li a {
 .secret-inner *:not(img) {
     opacity: .35;
     margin-top: .5em;
+}
+
+.button.button.in-bg.button.bottom.button.left::before {
+    font-size: 135%;
+    vertical-align: bottom;
 }
 
 @keyframes secret-anim {

@@ -31,7 +31,7 @@ $(document).ready(function () {
         mouseDown = false;
         snapBackIntoPlace();
     };
-    $("#social-media-link").on("touchmove", function (evt) {
+    $(".social-media-links").on("touchmove", function (evt) {
         updatePosition(calcOffsetFromBottom(evt.originalEvent.touches[0].pageY));
         evt.preventDefault();
     }).on("mousedown", function (evt) {
