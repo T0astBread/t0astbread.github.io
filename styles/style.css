@@ -211,6 +211,16 @@ ul li a {
 .social-media-links {
     user-select: none;
     -webkit-user-drag: none;
+    cursor: move;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    cursor: grab;
+}
+
+.social-media-links:active {
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
+    cursor: grabbing;
 }
 
 .social-media-link {
@@ -354,8 +364,10 @@ small, .small {
     ul li a {
         font-size: 48pt;
     }
-    #social-media-link {
+    .social-media-links {
         font-size: 32pt;
+        padding-top: .25em;
+        padding-bottom: .25em;
     }
     .secret-outer {
         bottom: 30%;
