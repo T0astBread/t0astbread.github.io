@@ -7,7 +7,7 @@ let updatePosition = (marginBottom: number) =>
     let oldMarginBottom = 0;
     oldMarginBottom = getOffsetFromBottom();
     $("body").css("padding-bottom", marginBottom);
-    if(hasHitTop()) updatePosition(marginBottom - 1);
+    if (hasHitTop()) updatePosition(marginBottom - 1);
 };
 
 let calcOffsetFromBottom = (y: number) => $(document).height() - y;
@@ -15,16 +15,25 @@ let getOffsetFromBottom = () => parseInt($("body").css("padding-bottom").replace
 let negligibleOffsetFromBottom = () => Math.abs(getOffsetFromBottom()) < 5;
 let hasHitTop = () => $("ul").height() <= 2;
 
-let snapBackIntoPlace = () =>
+let animatePosition = (targetOffsetFromBottom: number, duration: number = 1000, easingFunction: string = "easeOutBounce", onFinishCallback: (() => void)|undefined = undefined) =>
+{
+    currentlyBeingAnimated = true;
+    $("body").animate(
+    {
+        "padding-bottom": targetOffsetFromBottom
+    }, {"duration": duration, "easing": easingFunction});
+    setTimeout(() =>
+    {
+        currentlyBeingAnimated = false;
+        if(onFinishCallback) onFinishCallback();
+    }, 1000);
+};
+
+let snapBackIntoPlace = (duration: number|undefined = undefined, easingFunction: string|undefined = undefined) =>
 {
     if (!negligibleOffsetFromBottom())
     {
-        currentlyBeingAnimated = true;
-        $("body").animate(
-        {
-            "padding-bottom": standardOffsetFromBottom
-        }, 1000);
-        setTimeout(() => currentlyBeingAnimated = false, 1000);
+        animatePosition(standardOffsetFromBottom, duration, easingFunction);
     }
     else updatePosition(standardOffsetFromBottom);
 };
@@ -63,7 +72,7 @@ $(document).ready(() =>
             if (Math.abs(getOffsetFromBottom() - offsetFromBottomAtBeginning) > 10) evt.preventDefault();
         });
 
-        $(document).on("mouseup", mouseLost);
+    $(document).on("mouseup", mouseLost);
 
     // $("h2").on("mouseenter", mouseLost);
     // $("ul").on("mouseenter", () => mouseOverUl = true).on("mouseleave", () => mouseOverUl = false);

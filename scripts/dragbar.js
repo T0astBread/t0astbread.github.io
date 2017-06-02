@@ -13,13 +13,25 @@ var calcOffsetFromBottom = function (y) { return $(document).height() - y; };
 var getOffsetFromBottom = function () { return parseInt($("body").css("padding-bottom").replace("px", "")); };
 var negligibleOffsetFromBottom = function () { return Math.abs(getOffsetFromBottom()) < 5; };
 var hasHitTop = function () { return $("ul").height() <= 2; };
-var snapBackIntoPlace = function () {
+var animatePosition = function (targetOffsetFromBottom, duration, easingFunction, onFinishCallback) {
+    if (duration === void 0) { duration = 1000; }
+    if (easingFunction === void 0) { easingFunction = "easeOutBounce"; }
+    if (onFinishCallback === void 0) { onFinishCallback = undefined; }
+    currentlyBeingAnimated = true;
+    $("body").animate({
+        "padding-bottom": targetOffsetFromBottom
+    }, { "duration": duration, "easing": easingFunction });
+    setTimeout(function () {
+        currentlyBeingAnimated = false;
+        if (onFinishCallback)
+            onFinishCallback();
+    }, 1000);
+};
+var snapBackIntoPlace = function (duration, easingFunction) {
+    if (duration === void 0) { duration = undefined; }
+    if (easingFunction === void 0) { easingFunction = undefined; }
     if (!negligibleOffsetFromBottom()) {
-        currentlyBeingAnimated = true;
-        $("body").animate({
-            "padding-bottom": standardOffsetFromBottom
-        }, 1000);
-        setTimeout(function () { return currentlyBeingAnimated = false; }, 1000);
+        animatePosition(standardOffsetFromBottom, duration, easingFunction);
     }
     else
         updatePosition(standardOffsetFromBottom);
