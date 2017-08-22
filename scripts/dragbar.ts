@@ -8,6 +8,7 @@ let updatePosition = (marginBottom: number) =>
     oldMarginBottom = getOffsetFromBottom();
     $("body").css("padding-bottom", marginBottom);
     if (hasHitTop()) updatePosition(marginBottom - 1);
+    updateSecret(getOffsetFromBottom());
 };
 
 let calcOffsetFromBottom = (y: number) => $(document).height() - y;
@@ -15,21 +16,41 @@ let getOffsetFromBottom = () => parseInt($("body").css("padding-bottom").replace
 let negligibleOffsetFromBottom = () => Math.abs(getOffsetFromBottom()) < 5;
 let hasHitTop = () => $("ul").height() <= 2;
 
-let animatePosition = (targetOffsetFromBottom: number, duration: number = 1000, easingFunction: string = "easeOutBounce", onFinishCallback: (() => void)|undefined = undefined) =>
+let updateSecret = (offsetFromBottom: number) =>
 {
+    let newText = offsetFromBottom > $(".secret-inner").offset().top * .5 ?
+        "Yes, you found a secret!" : "Could this be a secret?";
+    let secret = $(".secret-inner > div");
+    if (secret.text() === newText) return;
+    secret.text(newText);
+
+    secret.css("opacity", "0");
+    secret.animate(
+    {
+        opacity: 1
+    }, 1000);
+};
+
+let animatePosition = (targetOffsetFromBottom: number, duration: number = 1000, easingFunction: string = "easeOutBounce", onFinishCallback: (() => void) | undefined = undefined) =>
+{
+    updateSecret(targetOffsetFromBottom);
     currentlyBeingAnimated = true;
     $("body").animate(
     {
         "padding-bottom": targetOffsetFromBottom
-    }, {"duration": duration, "easing": easingFunction});
+    },
+    {
+        duration: duration,
+        easing: easingFunction
+    });
     setTimeout(() =>
     {
         currentlyBeingAnimated = false;
-        if(onFinishCallback) onFinishCallback();
+        if (onFinishCallback) onFinishCallback();
     }, 1000);
 };
 
-let snapBackIntoPlace = (duration: number|undefined = undefined, easingFunction: string|undefined = undefined) =>
+let snapBackIntoPlace = (duration: number | undefined = undefined, easingFunction: string | undefined = undefined) =>
 {
     if (!negligibleOffsetFromBottom())
     {

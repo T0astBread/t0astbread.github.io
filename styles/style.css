@@ -259,8 +259,24 @@ ul li a {
     position: relative;
     left: -50%;
     text-align: center;
+    /*opacity: 0;*/
+    /*animation: secret-anim 2s 4s forwards;*/
+}
+
+.secret-inner.changing {
     opacity: 0;
-    animation: secret-anim 2s 4s forwards;
+    animation-name: secret-changing;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes secret-changing {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .secret-inner img {
