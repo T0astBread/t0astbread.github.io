@@ -2,12 +2,12 @@
     "name": "T0astBread's GitHub",
     "icons": [
         {
-            "src": "/favicon/android-chrome-192x192.png?ver=2",
+            "src": "/favicons/android-chrome-192x192.png?ver=2",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/favicon/android-chrome-512x512.png?ver=2",
+            "src": "/favicons/android-chrome-512x512.png?ver=2",
             "sizes": "512x512",
             "type": "image/png"
         }
