@@ -36,6 +36,13 @@ var snapBackIntoPlace = function (duration, easingFunction) {
     else
         updatePosition(standardOffsetFromBottom);
 };
+var mouseMove = function (evt) {
+    if (!mouseDown || currentlyBeingAnimated)
+        return;
+    var dist = calcOffsetFromBottom(evt.originalEvent.pageY + mouseDownOffsetY);
+    updatePosition(dist);
+    evt.preventDefault();
+};
 var mouseLost = function () {
     if (currentlyBeingAnimated || negligibleOffsetFromBottom() || mouseOverUl)
         return;
@@ -55,17 +62,12 @@ $(document).ready(function () {
         offsetFromBottomAtBeginning = getOffsetFromBottom();
         evt.preventDefault();
     }).on("touchend", mouseLost)
-        .on("mousemove", function (evt) {
-        if (!mouseDown || currentlyBeingAnimated)
-            return;
-        var dist = calcOffsetFromBottom(evt.originalEvent.pageY + mouseDownOffsetY);
-        updatePosition(dist);
-        evt.preventDefault();
-    }).on("click", function (evt) {
+        .on("click", function (evt) {
         if (Math.abs(getOffsetFromBottom() - offsetFromBottomAtBeginning) > 10)
             evt.preventDefault();
     });
-    $(document).on("mouseup", mouseLost);
+    $(document).on("mouseup", mouseLost)
+        .on("mousemove", mouseMove);
     // $("h2").on("mouseenter", mouseLost);
     // $("ul").on("mouseenter", () => mouseOverUl = true).on("mouseleave", () => mouseOverUl = false);
 });

@@ -38,6 +38,14 @@ let snapBackIntoPlace = (duration: number|undefined = undefined, easingFunction:
     else updatePosition(standardOffsetFromBottom);
 };
 
+let mouseMove = (evt: JQueryEventObject) =>
+{
+    if (!mouseDown || currentlyBeingAnimated) return;
+    let dist = calcOffsetFromBottom((evt.originalEvent as MouseEvent).pageY + mouseDownOffsetY);
+    updatePosition(dist);
+    evt.preventDefault();
+};
+
 let mouseLost = () =>
 {
     if (currentlyBeingAnimated || negligibleOffsetFromBottom() || mouseOverUl) return;
@@ -61,18 +69,13 @@ $(document).ready(() =>
             offsetFromBottomAtBeginning = getOffsetFromBottom();
             evt.preventDefault();
         }).on("touchend", mouseLost)
-        .on("mousemove", evt =>
-        {
-            if (!mouseDown || currentlyBeingAnimated) return;
-            let dist = calcOffsetFromBottom((evt.originalEvent as MouseEvent).pageY + mouseDownOffsetY);
-            updatePosition(dist);
-            evt.preventDefault();
-        }).on("click", evt =>
+        .on("click", evt =>
         {
             if (Math.abs(getOffsetFromBottom() - offsetFromBottomAtBeginning) > 10) evt.preventDefault();
         });
 
-    $(document).on("mouseup", mouseLost);
+    $(document).on("mouseup", mouseLost)
+        .on("mousemove", mouseMove);
 
     // $("h2").on("mouseenter", mouseLost);
     // $("ul").on("mouseenter", () => mouseOverUl = true).on("mouseleave", () => mouseOverUl = false);
