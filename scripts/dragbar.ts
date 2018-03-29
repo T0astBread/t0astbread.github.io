@@ -12,7 +12,7 @@ const updatePosition = (marginBottom: number) => {
 const calcOffsetFromBottom = (y: number) => $(document).height() - y
 const getOffsetFromBottom = () => parseInt($("body").css("padding-bottom").replace("px", ""))
 const negligibleOffsetFromBottom = () => Math.abs(getOffsetFromBottom()) < 5
-const hasHitTop = () => $("ul").height() <= 2
+const hasHitTop = () => $("ul#repos-list").height() <= 2
 
 const animatePosition = (targetOffsetFromBottom: number, duration: number = 1000, easingFunction: string = "easeOutBounce", onFinishCallback: (() => void)|undefined = undefined) => {
     currentlyBeingAnimated = true

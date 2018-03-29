@@ -93,6 +93,26 @@ body > section > *:first-child {
     border-top: none;
 }
 
+#announcements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 5;
+    list-style: none;
+}
+
+#announcements li {
+    padding: .25em;
+    color: #999;
+    background-color: rgba(0, 0, 0, .4);
+    transition: padding .2s cubic-bezier(0.62, 0.1, 0.43, 1.15);
+}
+
+#announcements li:hover {
+    padding: .5em .25em;
+}
+
 a {
     color: #333;
     text-decoration: none;
@@ -145,7 +165,7 @@ h2 {
     font-size: 24pt;
 }
 
-ul {
+ul.selectable-items-list {
     list-style: none;
     padding: 0!important;
     /*height: 15em;*/
@@ -159,7 +179,7 @@ ul {
     text-align: left;
 }
 
-ul li {
+ul.selectable-items-list li {
     background-color: #cccccc;
     color: #333333;
     margin-bottom: .3em;
@@ -170,23 +190,23 @@ ul li {
     /*transition: color .2s ease-out;*/
 }
 
-ul li:last-child {
+ul.selectable-items-list li:last-child {
     margin-bottom: 0;
 }
 
-ul li:hover {
+ul.selectable-items-list li:hover {
     background-color: #333333;
 }
 
-ul li:hover a {
+ul.selectable-items-list li:hover a {
     color: #cccccc;
 }
 
-.redirects-to-webpage {
+.selectable-items-list li .redirects-to-webpage {
     padding-right: 1.6em;
 }
 
-.redirects-to-webpage::after {
+.selectable-items-list li .redirects-to-webpage::after {
     content: "\f08e";
     font-family: "github-io-icons";
     font-size: .75em;
@@ -197,11 +217,11 @@ ul li:hover a {
     transform: translateY(-50%);
 }
 
-.redirects-to-webpage::after:hover {
+.selectable-items-list li .redirects-to-webpage::after:hover {
     color: red;
 }
 
-ul li a {
+ul.selectable-items-list li a {
     font-size: 22pt;
     color: inherit;
     text-decoration: none;
@@ -347,46 +367,78 @@ small, .small {
         padding-bottom: 0;
         transition: 0s;
     }
+
     body > section {
         width: 100%;
         height: 100%;
     }
+
     /*body::before {
         height: 0;
         display: none;
     }*/
+
+    #announcements {
+        font-size: 48pt;
+        animation: fade-in .7s 1s ease forwards,
+            1s 10s announcements-out-anim ease forwards;
+    }
+
+    @keyframes announcements-out-anim {
+        from {
+            transform: translateY(0);
+        }
+        to {
+            transform: translateY(-100%);
+            visibility: hidden;
+        }
+    }
+
+    #announcements li {
+        background: #000d;
+    }
+
     #banner {
         height: 10em;
         padding-top: 2em;
         padding-bottom: 2em;
     }
+
     h2 {
         font-size: 64pt;
     }
-    ul li {
+
+    ul.selectable-items-list li {
         padding: 2em;
     }
-    ul li a {
+    
+    ul.selectable-items-list li a {
         font-size: 48pt;
     }
+
     .social-media-links {
         font-size: 32pt;
         padding-top: .25em;
         padding-bottom: .25em;
     }
+
     .secret-outer {
         bottom: 30%;
         height: 24em;
     }
+
     .secret-inner {
         font-size: 48pt;
     }
+
     .secret-inner *:not(img) {
         opacity: .175;
     }
+
     .secret-inner img {
         opacity: .5;
     }
+
     .in-bg {
         display: none;
     }
