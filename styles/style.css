@@ -113,16 +113,22 @@ body > section > *:first-child {
     padding: .5em .25em;
 }
 
-a {
-    color: #333;
-    text-decoration: none;
+#announcements li a {
+    color: #efefef;
 }
 
-a:hover {
+a, .link-like {
+    color: #333;
+    text-decoration: none;
+    background: none;
+    border: none;
+}
+
+a:hover, .link-like:hover {
     color: #999;
 }
 
-a:active {
+a:active, .link-like:active {
     color: #555;
 }
 
@@ -359,6 +365,43 @@ small, .small {
 .centered {
     position: relative;
     left: -50%;
+}
+
+.overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    background: #555;
+    color: white;
+    opacity: 1;
+    animation: none;
+}
+
+.overlay.closed {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.overlay .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.overlay a, .overlay .link-like {
+    color: #aaa;
+}
+
+.overlay a:hover, .overlay .link-like:hover {
+    color: #999;
+}
+
+.overlay a:active, .overlay .link-like:active {
+    color: #666;
 }
 
 @media screen and (max-width: 980px) {
